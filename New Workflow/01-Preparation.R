@@ -80,10 +80,30 @@ noisy_names <- dictionary$noisy_names
 
 # -----------------
 # Create the reports about funding organizations
-source("02-Funding_Organizations_V4.r", echo = TRUE) #Or open this file, and run line by line.
+source("02-Funding_Organizations_V4.r", echo = TRUE)
 
 # ----------------
 # Get the RCS
-source("03-RCS.r", echo = TRUE) #Or open this file, and run line by line.
+source("03-RCS.r", echo = TRUE)
+
+# ----------------
+#Create extra summaries. 
+source("04-Pivots.R", echo = TRUE)
+
+pivot_total <- merge(xxxx, yyyy, by = "Organization")
+write.csv(pivot_total, file = "FO_charact_total.csv", row.names = FALSE)
+
+# ---------------
+# Compute PCA
+pca_freq <- PCA_analyzer(xxxx)
+pca_cites <- PCA_analyzer(yyyy)
+
+# ---------------
+# Plot biplots of the principal components
+P_frequencies <- PCA_biplot(pca_freq, by_line = "by Frequencies")
+P_frequencies
+
+P_citations <- PCA_biplot(pca_cites, by_line = "by Citations")
+P_citations
 
 # ----------------
