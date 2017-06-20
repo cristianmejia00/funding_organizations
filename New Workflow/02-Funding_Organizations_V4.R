@@ -17,7 +17,7 @@ funding_o <- lapply(funding_o, function(x) {gsub("\\[.*?\\]", "", x)}) #Remove f
 funding_o <- lapply(funding_o, function(x) {gsub('"', "", x)})
 funding_o <- lapply(funding_o, function(x) {gsub(" $", "", x)}) #Remove space at the end of funding name
 funding_o <- lapply(funding_o, function(x) x[x!=""]) #Remove empty values
-if (using_dictionary == "YES") {
+if (using_dictionary) {
   funding_o <- lapply(1:length(funding_o), function(x) {
     sapply(funding_o[[x]], function(y) {
       pais <- data$Country[[x]]

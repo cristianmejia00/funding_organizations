@@ -34,6 +34,10 @@ library(reshape2)
 library(ggplot2)
 library(igraph)
 library(tm)
+library(plyr)
+library(dplyr)
+library(stringr)
+library(plotly)
 
 
 # ---------------
@@ -51,7 +55,7 @@ network <- read.graph(file.choose(), format = "ncol")
 setwd(choose.dir())
 
 # whether to use louvain communities (requieres network "mission.pairs.tsv")
-useLuvain <- FALSE
+useLouvain <- FALSE
 
 # Do you have a dictionary beforehand
 using_dictionary <- TRUE 
@@ -69,8 +73,11 @@ data$Country <- getCountry(data)
 if (useLouvain) {data <- add_louvain(data, network)}
 
 # Read dictionary
-dictionary <- as.data.table(a_dictionary)
+dictionary <- as.data.table(dictionary)
 setkey(dictionary, noisy_names)
 standard_names <- dictionary$standard_names
 noisy_names <- dictionary$noisy_names
 
+# -----------------
+# Create the reports about funding organizations
+source("02-Funding_Organizations_V4.r", echo = TRUE) #Or open this file, and run line by line.
