@@ -20,7 +20,7 @@ pca_existing <- prcomp(fo_charact2, center = TRUE, scale. = TRUE)
 plot(pca_existing, type = "l")
 
 fo_charactxx <- fo_charact
-fo_charact_total <- merge(fo_charactxx, fo_charact, by = "Row Labels")
+fo_charact_total <- merge(fo_charactxx, fo_charact, by = "Organization")
 write.csv(fo_charact_total, file = "FO_charact_total.csv", row.names = FALSE)
 
 test <- as.data.frame(pca_existing$x)

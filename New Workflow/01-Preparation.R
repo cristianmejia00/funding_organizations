@@ -81,3 +81,9 @@ noisy_names <- dictionary$noisy_names
 # -----------------
 # Create the reports about funding organizations
 source("02-Funding_Organizations_V4.r", echo = TRUE) #Or open this file, and run line by line.
+
+# ----------------
+# Get the RCS
+source("03-RCS.r", echo = TRUE) #Or open this file, and run line by line.
+
+# ----------------
