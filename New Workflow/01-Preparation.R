@@ -60,6 +60,9 @@ useLouvain <- FALSE
 # Do you have a dictionary beforehand
 using_dictionary <- TRUE 
 
+# Use acronyms
+using_acronyms <- TRUE
+
 #Which indicator is going to be used? #"Z9" or "TC"
 indicator = "Z9" 
 
@@ -107,3 +110,13 @@ P_citations <- PCA_biplot(pca_cites, by_line = "by Citations")
 P_citations
 
 # ----------------
+# Create reports of subject clasess
+source("05-Subject_Categories.R", echo = TRUE)
+
+
+# ----------------
+# PCA of subject classes
+# Cut the dataframe as needed
+zzzz <- zzzz[,4:20]
+
+source("06-PCA_for_SC.R", echo = TRUE)
