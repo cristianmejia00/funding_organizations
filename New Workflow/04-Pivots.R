@@ -1,4 +1,4 @@
-####################################33
+####################################
 # Skip excel and do pivots
 sum_of_freqs <- dcast(cluster_summaries_df, Organization ~ type, sum, value.var = "Frequency") 
 sum_of_freqs$total <- rowSums(sum_of_freqs[,2:5])

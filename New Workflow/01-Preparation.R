@@ -92,7 +92,8 @@ source("03-RCS.r", echo = TRUE)
 # ----------------
 #Create extra summaries. 
 source("04-Pivots.R", echo = TRUE)
-
+write.csv(sum_of_freqs, file = "FO_RCS_by_frequency.csv")
+write.csv(sum_of_cites, file = "FO_RCs_by_cites.csv")
 
 # ---------------
 # Compute PCA
@@ -118,6 +119,8 @@ source("05-Subject_Categories.R", echo = TRUE)
 zzzz <- zzzz[,5:20]
 
 source("06-PCA_for_SC.R", echo = TRUE)
+
+
 
 # ----------------
 # Save R environment image
