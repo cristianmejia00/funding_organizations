@@ -35,7 +35,7 @@ PCbiplot(pca_existing)
 
 # Save image
 ggsave(PCbiplot(pca_existing), filename = "PCA_subject_categories.png",  width=30, height=30, units="cm", bg = "transparent")
-ggsave(PCbiplot(pca_existing, show_arrow_label = FALSE), filename = "PCA_subject_categories.png",  width=30, height=30, units="cm", bg = "transparent")
+ggsave(PCbiplot(pca_existing, show_arrow_label = FALSE), filename = "PCA_subject_categories_noname.png",  width=30, height=30, units="cm", bg = "transparent")
 
 # Write legend
 write(real_category_names, file = "PCA_FO_arrow_legend.csv")
