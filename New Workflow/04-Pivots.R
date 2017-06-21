@@ -65,3 +65,7 @@ yyyy <- data.frame(rank = c(1:nrow(sum_of_cites)),
                    total = sum_of_cites$total, 
                    type = types_cites, 
                    row.names = NULL)
+
+# Write summary
+pivot_total <- merge(xxxx, yyyy, by = "Organization")
+write.csv(pivot_total, file = "FO_charact_total.csv", row.names = FALSE)

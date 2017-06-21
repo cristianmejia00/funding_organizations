@@ -93,8 +93,6 @@ source("03-RCS.r", echo = TRUE)
 #Create extra summaries. 
 source("04-Pivots.R", echo = TRUE)
 
-pivot_total <- merge(xxxx, yyyy, by = "Organization")
-write.csv(pivot_total, file = "FO_charact_total.csv", row.names = FALSE)
 
 # ---------------
 # Compute PCA
@@ -117,6 +115,10 @@ source("05-Subject_Categories.R", echo = TRUE)
 # ----------------
 # PCA of subject classes
 # Cut the dataframe as needed
-zzzz <- zzzz[,4:20]
+zzzz <- zzzz[,5:20]
 
 source("06-PCA_for_SC.R", echo = TRUE)
+
+# ----------------
+# Save R environment image
+save.image(file = "new_workflow_completed.Rdata")

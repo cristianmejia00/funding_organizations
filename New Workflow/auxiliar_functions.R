@@ -154,7 +154,7 @@ PCA_biplot <- function(pca_existing, fo_charact, by_line = "") {
 
 
 # PCA static
-PCbiplot <- function(PC, x="PC1", y="PC2") {
+PCbiplot <- function(PC, x="PC1", y="PC2", show_arrow_label = TRUE) {
   # PC being a prcomp object
   data <- data.frame(obsnames=row.names(PC$x), PC$x)
   plot <- ggplot(data, aes_string(x=x, y=y)) + geom_text(alpha=1, size=5, aes(label=obsnames))
@@ -170,8 +170,11 @@ PCbiplot <- function(PC, x="PC1", y="PC2") {
                       v1 = .7 * mult * (get(x)),
                       v2 = .7 * mult * (get(y))
   )
-  #plot <- plot + coord_equal() + geom_text(data=datapc, aes(x=v1, y=v2, label=varnames), size = 5, vjust=1, color="red")
-  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2), arrow=arrow(length=unit(0.2,"cm")), alpha=0.75, color="red")
+  
+  if (show_arrow_label) {
+    plot <- plot + coord_equal() + geom_text(data=datapc, aes(x=v1, y=v2, label=varnames), size = 5, vjust=1, color="red") #Arrow labels
+  }
+  plot <- plot + geom_segment(data=datapc, aes(x=0, y=0, xend=v1, yend=v2), arrow=arrow(length=unit(0.2,"cm")), alpha=0.75, color="red") #Arrows
   plot <- plot + theme(#panel.background = element_rect(fill = "white"),
     panel.background = element_rect(fill = "transparent") # bg of the panel
     , plot.background = element_rect(fill = "transparent") # bg of the plot
