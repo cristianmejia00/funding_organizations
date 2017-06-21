@@ -7,8 +7,6 @@
 #Get proportions
 zz_prop <- prop.table(as.matrix(zzzz), margin = 1)
 
-#Change name
-fo_charact2 <- zz_prop
 
 #Use acronyms
 if (using_acronyms) {
@@ -20,9 +18,11 @@ if (using_acronyms) {
   rownames(zz_prop) <- unname(acronyms_vector_name)
 }
 
+#Change name
+fo_charact2 <- zz_prop
 
 #Using numbered names
-real_category_names <- names(fo_charact2)
+real_category_names <- colnames(fo_charact2)
 names(fo_charact2) <- c(1:ncol(zz_prop))
 
 

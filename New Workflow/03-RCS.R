@@ -53,18 +53,17 @@ id_com <- sort(unique(data$"_C"))
 #RCS calculation
 #===============================
 #*******************************
-
 network_year <- round(mean(data$PY, na.rm = T), digits=4) #average of all years
 #Create a summary with information of each cluster
 #per each cluster a list of dataframes is created (one dataframe per core patent)
 values = lapply(id_com, function(g) {
   cluster = g
-  cluster_size = sum(data$"_C"==g)
-  cluster_data = data[data$"_C"==g,]
+  cluster_size = sum(clusterss==g)
+  cluster_data = data[clusterss==g,]
   cluster_year = round(mean(cluster_data$PY, na.rm = T), digits=4)
   #tech_name = names(table(cluster_data$Technology)) #Only one name is possible per cluster
   #tech_year = tech_year2[tech_name]
-  degrees <- cluster_data[,"Z9"] 
+  degrees <- cluster_data[,which(colnames(cluster_data)==indicator)] 
   dmax <- max(degrees, na.rm = TRUE)
   max_degrees<- cluster_data$"_N"[which(degrees == dmax)] #get the id of the patents with highest digree
   rows <- lapply(max_degrees, function(y) {
@@ -162,12 +161,10 @@ rcs_forced <- rcs_forced[get_max,]                                      #Let onl
 #########################################################
 #Now, we merge the results of RCS and the funding organizations.
 
-rcs_forced$cluster <- NULL
-setnames(rcs_forced, "cluster_number", "cluster")
-#setnames(general_summary, "Cluster", "cluster")
-#general_summary <- merge(rcs_forced, general_summary, by = "cluster")
+rcs_forced$"cluster_number" <- NULL
+setnames(general_summary, "Cluster", "cluster")
 
-general_summary2 <- general_summary[-1,]
+general_summary2 <- general_summary
 general_summary2$funding_status <- sapply(general_summary2$Ratio, function(x) {
   if (x == 0) {"Not funded"} else {"Funded"}
 })
@@ -199,7 +196,7 @@ write.csv(cluster_summaries_df, file = "FO_characterization_by_cluster.csv", row
 p <- plot_ly(rcs_funding, x = ~X, y = ~Y, mode = "markers", type = "scatter", 
              size = ~cluster_size,
              text = ~paste("ID: ", cluster)) %>% 
-  layout(title = paste(DEGREE, " -- RCS_Funding_Organizations"))
+  layout(title = paste(indicator, " -- RCS_Funding_Organizations"))
 p
 #Warnings appear when the number of technologies is less than 3
 

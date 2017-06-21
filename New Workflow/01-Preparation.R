@@ -103,10 +103,10 @@ pca_cites <- PCA_analyzer(yyyy)
 
 # ---------------
 # Plot biplots of the principal components
-P_frequencies <- PCA_biplot(pca_freq, by_line = "by Frequencies")
+P_frequencies <- PCA_biplot(pca_freq, xxxx, by_line = "by Frequencies")
 P_frequencies
 
-P_citations <- PCA_biplot(pca_cites, by_line = "by Citations")
+P_citations <- PCA_biplot(pca_cites, yyyy, by_line = "by Citations")
 P_citations
 
 # ----------------

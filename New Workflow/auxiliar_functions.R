@@ -83,13 +83,14 @@ PCA_analyzer <- function(pivot) {
   #Run the PCA
   pca_existing <- prcomp(fo_charact2, center = TRUE, scale. = TRUE)
   plot(pca_existing, type = "l")
-  return(as.data.frame(pca_existing$x))
+  return(pca_existing)
 }
 
 
 #PCA Plots
-PCA_biplot <- function(a_PCA_object, by_line = "") {
-  p <- plot_ly(a_PCA_object, 
+PCA_biplot <- function(pca_existing, fo_charact, by_line = "") {
+  test <- as.data.frame(pca_existing$x)
+  p <- plot_ly(test, 
                x = ~PC1, 
                y = ~PC2, 
                mode = "markers", 
