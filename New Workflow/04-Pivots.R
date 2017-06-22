@@ -6,7 +6,7 @@ sum_of_freqs <- arrange(sum_of_freqs, desc(total))
 sum_of_freqs <- filter(sum_of_freqs, total >= 10)
 
 # standarization
-scaled_sum_of_freq <- scale(sum_of_freqs[2:5])
+scaled_sum_of_freq <- prop.table(as.matrix(sum_of_freqs[2:5]), margin = 1) #scale(sum_of_freqs[2:5])
 
 # Organization names
 
